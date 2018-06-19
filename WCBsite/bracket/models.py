@@ -3,7 +3,7 @@ from django.db import models
 #The Team table will store whether or not someone has chosen them to make it into the quarter finals, semi finals, finals or win it all
 #The place they can fit in the bracket will be based on their group and rank.
 class Team(models.Model):
-    counry = models.CharField(max_length=50)
+    country = models.CharField(max_length=50)
     #path to image?
     logo = models.CharField(max_length=400) 
     primary_color = models.CharField(max_length=50)
