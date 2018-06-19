@@ -10,6 +10,10 @@ class Team(models.Model):
     secondary_color = models.CharField(max_length=50)
     group = models.CharField(max_length=1)
     group_stage_rank = models.IntegerField(default=0)
+    
+
+class TeamRank(models.Model):
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
     quarter_finals = models.BooleanField(default=False)
     semi_finals = models.BooleanField(default=False)
     finals = models.BooleanField(default=False)
