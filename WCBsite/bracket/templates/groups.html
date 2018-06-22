@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>World Cup 2018</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+{#{{ groups }}#}
+{#{{ group_map }}#}
+<h1>World Cup 2018</h1>
+{% for group, teams in group_map.items %}
+<h2>{{ group }}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Team</th>
+                <th>Points</th>
+                <th>Wins</th>
+                <th>Draws</th>
+                <th>Losses</th>
+                <th>GF</th>
+                <th>GA</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for team in teams %}
+            <tr>
+                <td>{{ team }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endfor %}
+
+</body>
+</html>

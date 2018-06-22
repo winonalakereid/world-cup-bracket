@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>World Cup 2018 - Matches</title>
+</head>
+<body>
+<h1>Matches</h1>
+{% for group, matches in group_matches.items %}
+    <p>{{ group }}</p>
+    <ul>
+    {% for match in matches %}
+        <li>{{ match }}</li>
+    {% endfor %}
+    </ul>
+{% endfor %}
+
+</body>
+</html>
