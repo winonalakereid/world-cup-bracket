@@ -7,7 +7,7 @@ from ..data_setup import create, revert
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('bracket', '0004_match_winner_date_unique'),
+        ('bracket', '0005_points'),
     ]
 
     operations = [
