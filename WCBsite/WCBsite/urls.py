@@ -1,13 +1,13 @@
 """WCBsite URL Configuration
 
-The `urlpatterns` list routes URLs to views. For more information please see:
+The `urlpatterns` list routes URLs to templates. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
 Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
+Function templates
+    1. Add an import:  from my_app import templates
+    2. Add a URL to urlpatterns:  path('', templates.home, name='home')
+Class-based templates
+    1. Add an import:  from other_app.templates import Home
     2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
+    path('', include('bracket.urls')),
     path('bracket/', include('bracket.urls')),
+    path('accounts/login/', admin.site.login),
     path('admin/', admin.site.urls),
 ]
