@@ -66,10 +66,12 @@ class Match(models.Model):
     team1_penalty = models.IntegerField(null=True, default=None, blank=True)
     team2_penalty = models.IntegerField(null=True, default=None, blank=True)
     winner = models.ForeignKey(Team, related_name='winner', on_delete=models.CASCADE, null=True, blank=True)
-    # finished = models.BooleanField(default=False)
+
+    def finished(self):
+        return local_tz(self.date) < local_tz(datetime.now())
 
     def __str__(self):
-        if self.winner is not None:
+        if self.finished():
             return f"{self.team1.country} {self.team1.emoji_string} {self.team1_score} - " \
                    f"{self.team2_score} {self.team2.emoji_string} {self.team2.country} {self.date}"
         else:
@@ -102,7 +104,8 @@ def get_group_matches():
 
     return group_matches
 
-def to_tz(date):
+
+def local_tz(date):
     local_tz = timezone.get_default_timezone()
     return date.astimezone(local_tz)
 
@@ -117,12 +120,12 @@ def get_group_standings():
     matches = Match.objects.all()
     for match in matches:
         print(match)
-        print(to_tz(match.date))
-        print(to_tz(datetime.now()))
-        print(f"In the past? {to_tz(match.date) < to_tz(datetime.now())}")
+        print(local_tz(match.date))
+        print(local_tz(datetime.now()))
+        print(f"In the past? {local_tz(match.date) < local_tz(datetime.now())}")
         if match.winner is not None:
             points[match.winner.country] += 3
-        elif to_tz(match.date) < to_tz(datetime.now()):
+        elif local_tz(match.date) < local_tz(datetime.now()):
             points[match.team1.country] += 1
             points[match.team2.country] += 1
     print(f"Points: {points}")
