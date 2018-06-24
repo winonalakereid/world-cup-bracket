@@ -39,7 +39,6 @@
             var clonedOption = option.cloneNode(true);
             clonedOption.classList.add(currentRound.id);
             var nextRoundId = "round" + nextRoundNumber + "." + nextGameNumber + "." + nextTeamNumber;
-            console.log(nextRoundId);
             var nextRound = document.getElementById(nextRoundId);
             var nextRoundOptions = nextRound.options;
             for(var i = 0; i < nextRoundOptions.length; i++){
