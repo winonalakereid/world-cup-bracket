@@ -31,12 +31,12 @@
         {% for team in teams %}
             <tr>
                 <td>{{ team }}</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ team.group_points }}</td>
+                <td>{{ team.group_wins  }}</td>
+                <td>{{ team.group_draws }}</td>
+                <td>{{ team.group_losses }}</td>
+                <td>{{ team.group_goals_scored }}</td>
+                <td>{{ team.group_goals_allowed }}</td>
             </tr>
         {% endfor %}
         </tbody>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Knockout Rounds</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        tr, td {
+            height: 10px;
+            width: 300px;
+            border-collapse: collapse;
+        }
+        .underline {
+            border-bottom: 1px solid black;
+        }
+        .right {
+            border-right: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h1>Knockout Matches</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <td class="underline">{{ round16.0.group1 }} {{ round16.0.seed1 }} - {{ round16.0.match.team1 }}</td>
+                <td class="underline"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="underline right">{{ round16.0.group2 }} {{ round16.0.seed2 }} - {{ round16.0.match.team2 }}</td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="right"></td>
+                <td class="underline"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="underline">{{ round16.1.group1 }} {{ round16.1.seed1 }} - {{ round16.1.match.team1 }}</td>
+                <td class="underline right"></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="underline right">{{ round16.1.group2 }} {{ round16.1.seed2 }} - {{ round16.1.match.team2 }}</td>
+                <td></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td class="right"></td>
+                <td class="underline"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="underline">{{ round16.2.group1 }} {{ round16.2.seed1 }} - {{ round16.2.match.team1 }}</td>
+                <td class="underline"></td>
+                <td class="right"></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="underline right">{{ round16.2.group2 }} {{ round16.2.seed2 }} - {{ round16.2.match.team2 }}</td>
+                <td class="right"></td>
+                <td class="right"></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="right"></td>
+                <td class="underline right"></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="underline">{{ round16.3.group1 }} {{ round16.3.seed1 }} - {{ round16.3.match.team1 }}</td>
+                <td class="underline right"></td>
+                <td></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="underline right">{{ round16.3.group2 }} {{ round16.3.seed2 }} - {{ round16.3.match.team2 }}</td>
+                <td></td>
+                <td></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="right"></td>
+                <td class="underline"></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="underline">{{ round16.4.group1 }} {{ round16.4.seed1 }} - {{ round16.4.match.team1 }}</td>
+                <td class="underline"></td>
+                <td></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="underline right">{{ round16.4.group2 }} {{ round16.4.seed2 }} - {{ round16.4.match.team2 }}</td>
+                <td class="right"></td>
+                <td></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="right"></td>
+                <td class="underline"></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="underline">{{ round16.5.group1 }} {{ round16.5.seed1 }} - {{ round16.5.match.team1 }}</td>
+                <td class="underline right"></td>
+                <td class="right"></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="underline right">{{ round16.5.group2 }} {{ round16.5.seed2 }} - {{ round16.5.match.team2 }}</td>
+                <td></td>
+                <td class="right"></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td class="right"></td>
+                <td class="underline right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="underline">{{ round16.6.group1 }} {{ round16.6.seed1 }} - {{ round16.6.match.team1 }}</td>
+                <td class="underline"></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="underline right">{{ round16.6.group2 }} {{ round16.6.seed2 }} - {{ round16.6.match.team2 }}</td>
+                <td class="right"></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="right"></td>
+                <td class="underline right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="underline">{{ round16.7.group1 }} {{ round16.7.seed1 }} - {{ round16.7.match.team1 }}</td>
+                <td class="underline right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="underline right">{{ round16.7.group2 }} {{ round16.7.seed2 }} - {{ round16.7.match.team2 }}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

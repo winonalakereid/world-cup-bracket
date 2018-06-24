@@ -3,6 +3,7 @@
 from django.conf import settings
 from django.db import migrations, models
 import django.db.models.deletion
+import datetime
 
 
 class Migration(migrations.Migration):
@@ -81,7 +82,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='match',
             name='date',
-            field=models.DateTimeField(default='2018-06-22 00:00:00', help_text='Match kickoff time (UTC)', verbose_name='kickoff'),
+            field=models.DateTimeField(default=datetime.datetime(2018, 6, 22, 7, 41, 53),
+                                       help_text='Match kickoff time (UTC)', verbose_name='kickoff'),
         ),
         migrations.AddField(
             model_name='match',
@@ -140,5 +142,5 @@ class Migration(migrations.Migration):
             name='fifa_code',
             field=models.CharField(default='', max_length=3),
             preserve_default=False,
-        ),
+        )
     ]
