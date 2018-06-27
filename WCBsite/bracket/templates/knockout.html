@@ -19,6 +19,37 @@
             border-right: 1px solid black;
         }
     </style>
+    <script>
+        function selectFunction(currentRound){
+            currentRoundNumber = ((currentRound.id).slice(5)).split(".")[0];
+            nextRoundNumber = currentRoundNumber / 2;
+            currentGameNumber = ((currentRound.id).slice(5)).split(".")[1];
+            if(currentGameNumber < 2){
+                nextGameNumber = 0;
+            } else if(currentGameNumber < 4){
+                nextGameNumber = 1;
+            }
+            currentTeamNumber = ((currentRound.id).slice(5)).split(".")[2];
+            if(currentGameNumber % 2 == 0){
+                nextTeamNumber = 1;
+            } else {
+                nextTeamNumber = 2;
+            }
+            var option = currentRound.options[currentRound.selectedIndex];
+            var clonedOption = option.cloneNode(true);
+            clonedOption.classList.add(currentRound.id);
+            var nextRoundId = "round" + nextRoundNumber + "." + nextGameNumber + "." + nextTeamNumber;
+            var nextRound = document.getElementById(nextRoundId);
+            var nextRoundOptions = nextRound.options;
+            for(var i = 0; i < nextRoundOptions.length; i++){
+                if(nextRoundOptions[i].classList.contains(currentRound.id)){
+                    nextRound.removeChild(nextRoundOptions[i]);
+                }
+            }
+            nextRound.appendChild(clonedOption);
+        }
+        
+    </script>
 </head>
 <body>
 <h1>Knockout Matches</h1>
@@ -26,8 +57,8 @@
     <table>
         <tbody>
             <tr>
-                <td class="underline">{{ round16.0.group1 }} {{ round16.0.seed1 }} - {{ round16.0.match.team1 }}</td>
-                <td class="underline"></td>
+                <td id="round16.0.1" class="underline">{{ round16.0.group1 }} {{ round16.0.seed1 }} - {{ round16.0.match.team1 }}</td>
+                <td class="underline"><select id="round8.0.1" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner</option><option>{{ round16.0.match.team1 }}</option><option>{{ round16.0.match.team2 }}</option></select></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -35,171 +66,9 @@
                 <td></td>
             </tr>
             <tr>
-                <td class="underline right">{{ round16.0.group2 }} {{ round16.0.seed2 }} - {{ round16.0.match.team2 }}</td>
+                <td id="round16.0.2" class="underline right">{{ round16.0.group2 }} {{ round16.0.seed2 }} - {{ round16.0.match.team2 }}</td>
                 <td class="right"></td>
                 <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td class="right"></td>
-                <td class="underline"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="underline">{{ round16.1.group1 }} {{ round16.1.seed1 }} - {{ round16.1.match.team1 }}</td>
-                <td class="underline right"></td>
-                <td class="right"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="underline right">{{ round16.1.group2 }} {{ round16.1.seed2 }} - {{ round16.1.match.team2 }}</td>
-                <td></td>
-                <td class="right"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td class="right"></td>
-                <td class="underline"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="underline">{{ round16.2.group1 }} {{ round16.2.seed1 }} - {{ round16.2.match.team1 }}</td>
-                <td class="underline"></td>
-                <td class="right"></td>
-                <td class="right"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="underline right">{{ round16.2.group2 }} {{ round16.2.seed2 }} - {{ round16.2.match.team2 }}</td>
-                <td class="right"></td>
-                <td class="right"></td>
-                <td class="right"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td class="right"></td>
-                <td class="underline right"></td>
-                <td class="right"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="underline">{{ round16.3.group1 }} {{ round16.3.seed1 }} - {{ round16.3.match.team1 }}</td>
-                <td class="underline right"></td>
-                <td></td>
-                <td class="right"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="underline right">{{ round16.3.group2 }} {{ round16.3.seed2 }} - {{ round16.3.match.team2 }}</td>
-                <td></td>
-                <td></td>
-                <td class="right"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="right"></td>
-                <td class="underline"></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="underline">{{ round16.4.group1 }} {{ round16.4.seed1 }} - {{ round16.4.match.team1 }}</td>
-                <td class="underline"></td>
-                <td></td>
-                <td class="right"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="underline right">{{ round16.4.group2 }} {{ round16.4.seed2 }} - {{ round16.4.match.team2 }}</td>
-                <td class="right"></td>
-                <td></td>
-                <td class="right"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td class="right"></td>
-                <td class="underline"></td>
-                <td class="right"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="underline">{{ round16.5.group1 }} {{ round16.5.seed1 }} - {{ round16.5.match.team1 }}</td>
-                <td class="underline right"></td>
-                <td class="right"></td>
-                <td class="right"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="underline right">{{ round16.5.group2 }} {{ round16.5.seed2 }} - {{ round16.5.match.team2 }}</td>
-                <td></td>
-                <td class="right"></td>
-                <td class="right"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td class="right"></td>
-                <td class="underline right"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="underline">{{ round16.6.group1 }} {{ round16.6.seed1 }} - {{ round16.6.match.team1 }}</td>
-                <td class="underline"></td>
-                <td class="right"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td class="underline right">{{ round16.6.group2 }} {{ round16.6.seed2 }} - {{ round16.6.match.team2 }}</td>
-                <td class="right"></td>
-                <td class="right"></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -208,15 +77,177 @@
             <tr>
                 <td></td>
                 <td class="right"></td>
-                <td class="underline right"></td>
+                <td class="underline"><select id="round4.0.1" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner</option></select></td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
-                <td class="underline">{{ round16.7.group1 }} {{ round16.7.seed1 }} - {{ round16.7.match.team1 }}</td>
-                <td class="underline right"></td>
+                <td id="round16.1.1" class="underline">{{ round16.1.group1 }} {{ round16.1.seed1 }} - {{ round16.1.match.team1 }}</td>
+                <td class="underline right"><select id="round8.0.2" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner</option><option>{{ round16.1.match.team1 }}</option><option>{{ round16.1.match.team2 }}</option></select></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td id="round16.1.2" class="underline right">{{ round16.1.group2 }} {{ round16.1.seed2 }} - {{ round16.1.match.team2 }}</td>
+                <td></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td class="right"></td>
+                <td class="underline"><select id="round2.0.1" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner</option></select></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td id="round16.2.1" class="underline">{{ round16.2.group1 }} {{ round16.2.seed1 }} - {{ round16.2.match.team1 }}</td>
+                <td class="underline"><select id="round8.1.1" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner<option>{{ round16.2.match.team1 }}</option><option>{{ round16.2.match.team2 }}</option></select></td>
+                <td class="right"></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td id="round16.2.2" class="underline right">{{ round16.2.group2 }} {{ round16.2.seed2 }} - {{ round16.2.match.team2 }}</td>
+                <td class="right"></td>
+                <td class="right"></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="right"></td>
+                <td class="underline right"><select id="round4.0.2" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner</option></select></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td id="round16.3.1" class="underline">{{ round16.3.group1 }} {{ round16.3.seed1 }} - {{ round16.3.match.team1 }}</td>
+                <td class="underline right"><select id="round8.1.2" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner<option>{{ round16.3.match.team1 }}</option><option>{{ round16.3.match.team2 }}</option></select></td>
+                <td></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td id="round16.3.2" class="underline right">{{ round16.3.group2 }} {{ round16.3.seed2 }} - {{ round16.3.match.team2 }}</td>
+                <td></td>
+                <td></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="right"></td>
+                <td class="underline"><select id="round1.0.1"><option selected disabled hidden>Select Winner</option></select></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td id="round16.4.1" class="underline">{{ round16.4.group1 }} {{ round16.4.seed1 }} - {{ round16.4.match.team1 }}</td>
+                <td class="underline"><select id="round8.2.1" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner<option>{{ round16.4.match.team1 }}</option><option>{{ round16.4.match.team2 }}</option></select></td>
+                <td></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td id="round16.4.2" class="underline right">{{ round16.4.group2 }} {{ round16.4.seed2 }} - {{ round16.4.match.team2 }}</td>
+                <td class="right"></td>
+                <td></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="right"></td>
+                <td class="underline"><select id="round4.1.1" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner</option></select></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td id="round16.5.1" class="underline">{{ round16.5.group1 }} {{ round16.5.seed1 }} - {{ round16.5.match.team1 }}</td>
+                <td class="underline right"><select id="round8.2.2" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner<option>{{ round16.5.match.team1 }}</option><option>{{ round16.5.match.team2 }}</option></select></td>
+                <td class="right"></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td id="round16.5.2" class="underline right">{{ round16.5.group2 }} {{ round16.5.seed2 }} - {{ round16.5.match.team2 }}</td>
+                <td></td>
+                <td class="right"></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td class="right"></td>
+                <td class="underline right"><select id="round2.0.2" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner</option></select></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td id="round16.6.1" class="underline">{{ round16.6.group1 }} {{ round16.6.seed1 }} - {{ round16.6.match.team1 }}</td>
+                <td class="underline"><select id="round8.3.1" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner<option>{{ round16.6.match.team1 }}</option><option>{{ round16.6.match.team2 }}</option></select></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td id="round16.6.2" class="underline right">{{ round16.6.group2 }} {{ round16.6.seed2 }} - {{ round16.6.match.team2 }}</td>
+                <td class="right"></td>
+                <td class="right"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="right"></td>
+                <td class="underline right"><select id="round4.1.2" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner</option></select></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td id="round16.7.1" class="underline">{{ round16.7.group1 }} {{ round16.7.seed1 }} - {{ round16.7.match.team1 }}</td>
+                <td class="underline right"><select id="round8.3.2" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner<option>{{ round16.7.match.team1 }}</option><option>{{ round16.7.match.team2 }}</option></select></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -224,7 +255,7 @@
                 <td></td>
             </tr>
             <tr>
-                <td class="underline right">{{ round16.7.group2 }} {{ round16.7.seed2 }} - {{ round16.7.match.team2 }}</td>
+                <td id="round16.7.2" class="underline right">{{ round16.7.group2 }} {{ round16.7.seed2 }} - {{ round16.7.match.team2 }}</td>
                 <td></td>
                 <td></td>
                 <td></td>
