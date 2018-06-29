@@ -58,7 +58,23 @@
         <tbody>
             <tr>
                 <td id="round16.0.1" class="underline">{{ round16.0.group1 }} {{ round16.0.seed1 }} - {{ round16.0.match.team1 }}</td>
-                <td class="underline"><select id="round8.0.1" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner</option><option>{{ round16.0.match.team1 }}</option><option>{{ round16.0.match.team2 }}</option></select></td>
+                <td class="underline">
+                    <select id="round8.0.1" onchange="selectFunction(this);">
+                            <option selected disabled hidden>Select Winner</option>
+                            <option {% for pick in quarterPicks %}
+                                        {% if pick.team == round16.0.match.team1 %} 
+                                            selected
+                                        {% endif %}
+                                    {% endfor %} >{{ round16.0.match.team1 }}
+                            </option>
+                            <option {% for pick in quarterPicks %}
+                                        {% if pick.team == round16.0.match.team2 %} 
+                                            selected
+                                        {% endif %}
+                                    {% endfor %} >{{ round16.0.match.team2 }}
+                            </option>
+                    </select>
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -77,7 +93,31 @@
             <tr>
                 <td></td>
                 <td class="right"></td>
-                <td class="underline"><select id="round4.0.1" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner</option></select></td>
+                <td class="underline">
+                    <select id="round4.0.1" onchange="selectFunction(this);">
+                        <option selected disabled hidden>Select Winner</option>
+                        {% for pick in quarterPicks %}
+                            {% if pick.team == round16.0.match.team1 or pick.team == round16.0.match.team2 %}
+                                <option
+                                    {% for semiPick in semiPicks %}
+                                        {% if semiPick.team == pick.team %}
+                                            selected
+                                        {% endif %}
+                                    {% endfor %} > {{ pick.team }}
+                                </option>
+                            {% endif %}
+                            {% if pick.team == round16.1.match.team1 or pick.team == round16.1.match.team2 %}
+                                <option
+                                    {% for semiPick in semiPicks %}
+                                        {% if semiPick.team == pick.team %}
+                                            selected
+                                        {% endif %}
+                                    {% endfor %} > {{ pick.team }}
+                                </option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -85,7 +125,23 @@
             </tr>
             <tr>
                 <td id="round16.1.1" class="underline">{{ round16.1.group1 }} {{ round16.1.seed1 }} - {{ round16.1.match.team1 }}</td>
-                <td class="underline right"><select id="round8.0.2" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner</option><option>{{ round16.1.match.team1 }}</option><option>{{ round16.1.match.team2 }}</option></select></td>
+                <td class="underline right">
+                    <select id="round8.0.2" onchange="selectFunction(this);">
+                        <option selected disabled hidden>Select Winner</option>
+                        <option {% for pick in quarterPicks %}
+                                    {% if pick.team == round16.1.match.team1 %} 
+                                        selected
+                                    {% endif %}
+                                {% endfor %} >{{ round16.1.match.team1 }}
+                        </option>
+                        <option {% for pick in quarterPicks %}
+                                    {% if pick.team == round16.1.match.team2 %} 
+                                        selected
+                                    {% endif %}
+                                {% endfor %} >{{ round16.1.match.team2 }}
+                        </option>
+                    </select>
+                </td>
                 <td class="right"></td>
                 <td></td>
                 <td></td>
@@ -105,14 +161,54 @@
                 <td></td>
                 <td></td>
                 <td class="right"></td>
-                <td class="underline"><select id="round2.0.1" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner</option></select></td>
+                <td class="underline">
+                    <select id="round2.0.1" onchange="selectFunction(this);">
+                            <option selected disabled hidden>Select Winner</option>
+                            {% for pick in semiPicks %}
+                                {% if pick.team == round16.0.match.team1 or pick.team == round16.0.match.team2  or pick.team == round16.1.match.team1 or pick.team == round16.1.match.team2 %}
+                                    <option
+                                        {% for finalPick in finalPicks %}
+                                            {% if finalPick.team == pick.team %}
+                                                selected
+                                            {% endif %}
+                                        {% endfor %} > {{ pick.team }}
+                                    </option>
+                                {% endif %}
+                                {% if pick.team == round16.2.match.team1 or pick.team == round16.2.match.team2  or pick.team == round16.3.match.team1 or pick.team == round16.3.match.team2 %}
+                                    <option
+                                        {% for finalPick in finalPicks %}
+                                            {% if finalPick.team == pick.team %}
+                                                selected
+                                            {% endif %}
+                                        {% endfor %} > {{ pick.team }}
+                                    </option>
+                                {% endif %}
+                            {% endfor %}
+                    </select>
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td id="round16.2.1" class="underline">{{ round16.2.group1 }} {{ round16.2.seed1 }} - {{ round16.2.match.team1 }}</td>
-                <td class="underline"><select id="round8.1.1" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner<option>{{ round16.2.match.team1 }}</option><option>{{ round16.2.match.team2 }}</option></select></td>
+                <td class="underline">
+                    <select id="round8.1.1" onchange="selectFunction(this);">
+                        <option selected disabled hidden>Select Winner</option>
+                        <option {% for pick in quarterPicks %}
+                                    {% if pick.team == round16.2.match.team1 %} 
+                                        selected
+                                    {% endif %}
+                                {% endfor %} >{{ round16.2.match.team1 }}
+                        </option>
+                        <option {% for pick in quarterPicks %}
+                                    {% if pick.team == round16.2.match.team2 %} 
+                                        selected
+                                    {% endif %}
+                                {% endfor %} >{{ round16.2.match.team2 }}
+                        </option>                  
+                    </select>
+                </td>
                 <td class="right"></td>
                 <td class="right"></td>
                 <td></td>
@@ -131,7 +227,32 @@
             <tr>
                 <td></td>
                 <td class="right"></td>
-                <td class="underline right"><select id="round4.0.2" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner</option></select></td>
+                <td class="underline right">
+                    <select id="round4.0.2" onchange="selectFunction(this);">
+                        <option selected disabled hidden>Select Winner</option>
+                        <option selected disabled hidden>Select Winner</option>
+                        {% for pick in quarterPicks %}
+                            {% if pick.team == round16.2.match.team1 or pick.team == round16.2.match.team2 %}
+                                <option
+                                    {% for semiPick in semiPicks %}
+                                        {% if semiPick.team == pick.team %}
+                                            selected
+                                        {% endif %}
+                                    {% endfor %} > {{ pick.team }}
+                                </option>
+                            {% endif %}
+                            {% if pick.team == round16.3.match.team1 or pick.team == round16.3.match.team2 %}
+                                <option
+                                    {% for semiPick in semiPicks %}
+                                        {% if semiPick.team == pick.team %}
+                                            selected
+                                        {% endif %}
+                                    {% endfor %} > {{ pick.team }}
+                                </option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </td>
                 <td class="right"></td>
                 <td></td>
                 <td></td>
@@ -139,7 +260,23 @@
             </tr>
             <tr>
                 <td id="round16.3.1" class="underline">{{ round16.3.group1 }} {{ round16.3.seed1 }} - {{ round16.3.match.team1 }}</td>
-                <td class="underline right"><select id="round8.1.2" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner<option>{{ round16.3.match.team1 }}</option><option>{{ round16.3.match.team2 }}</option></select></td>
+                <td class="underline right">
+                    <select id="round8.1.2" onchange="selectFunction(this);"> 
+                        <option selected disabled hidden>Select Winner</option>
+                        <option {% for pick in quarterPicks %}
+                                    {% if pick.team == round16.3.match.team1 %} 
+                                        selected
+                                    {% endif %}
+                                {% endfor %} >{{ round16.3.match.team1 }}
+                        </option>
+                        <option {% for pick in quarterPicks %}
+                                    {% if pick.team == round16.3.match.team2 %} 
+                                        selected
+                                    {% endif %}
+                                {% endfor %} >{{ round16.3.match.team2 }}
+                        </option>
+                    </select>
+                </td>
                 <td></td>
                 <td class="right"></td>
                 <td></td>
@@ -160,13 +297,41 @@
                 <td></td>
                 <td></td>
                 <td class="right"></td>
-                <td class="underline"><select id="round1.0.1"><option selected disabled hidden>Select Winner</option></select></td>
+                <td class="underline">
+                    <select id="round1.0.1">
+                        {% for pick in finalPicks %}
+                                <option
+                                    {% if finalist.team == pick.team %}
+                                        selected
+                                    {% endif %} > {{ pick.team }}
+                                </option>
+                        {% empty %}
+                            <option selected disabled hidden>Select Winner</option>
+                        {% endfor %}
+                    </select>
+                </td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td id="round16.4.1" class="underline">{{ round16.4.group1 }} {{ round16.4.seed1 }} - {{ round16.4.match.team1 }}</td>
-                <td class="underline"><select id="round8.2.1" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner<option>{{ round16.4.match.team1 }}</option><option>{{ round16.4.match.team2 }}</option></select></td>
+                <td class="underline">
+                    <select id="round8.2.1" onchange="selectFunction(this);">
+                        <option selected disabled hidden>Select Winner</option>
+                        <option {% for pick in quarterPicks %}
+                                    {% if pick.team == round16.4.match.team1 %} 
+                                        selected
+                                    {% endif %}
+                                {% endfor %} >{{ round16.4.match.team1 }}
+                        </option>
+                        <option {% for pick in quarterPicks %}
+                                    {% if pick.team == round16.4.match.team2 %} 
+                                        selected
+                                    {% endif %}
+                                {% endfor %} >{{ round16.4.match.team2 }}
+                        </option>
+                    </select>
+                </td>
                 <td></td>
                 <td class="right"></td>
                 <td></td>
@@ -185,7 +350,32 @@
             <tr>
                 <td></td>
                 <td class="right"></td>
-                <td class="underline"><select id="round4.1.1" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner</option></select></td>
+                <td class="underline">
+                    <select id="round4.1.1" onchange="selectFunction(this);">
+                        <option selected disabled hidden>Select Winner</option>
+                        <option selected disabled hidden>Select Winner</option>
+                        {% for pick in quarterPicks %}
+                            {% if pick.team == round16.4.match.team1 or pick.team == round16.4.match.team2 %}
+                                <option
+                                    {% for semiPick in semiPicks %}
+                                        {% if semiPick.team == pick.team %}
+                                            selected
+                                        {% endif %}
+                                    {% endfor %} > {{ pick.team }}
+                                </option>
+                            {% endif %}
+                            {% if pick.team == round16.5.match.team1 or pick.team == round16.5.match.team2 %}
+                                <option
+                                    {% for semiPick in semiPicks %}
+                                        {% if semiPick.team == pick.team %}
+                                            selected
+                                        {% endif %}
+                                    {% endfor %} > {{ pick.team }}
+                                </option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </td>
                 <td class="right"></td>
                 <td></td>
                 <td></td>
@@ -193,7 +383,23 @@
             </tr>
             <tr>
                 <td id="round16.5.1" class="underline">{{ round16.5.group1 }} {{ round16.5.seed1 }} - {{ round16.5.match.team1 }}</td>
-                <td class="underline right"><select id="round8.2.2" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner<option>{{ round16.5.match.team1 }}</option><option>{{ round16.5.match.team2 }}</option></select></td>
+                <td class="underline right">
+                    <select id="round8.2.2" onchange="selectFunction(this);">
+                        <option selected disabled hidden>Select Winner</option>
+                        <option {% for pick in quarterPicks %}
+                                    {% if pick.team == round16.5.match.team1 %} 
+                                        selected
+                                    {% endif %}
+                                {% endfor %} >{{ round16.5.match.team1 }}
+                        </option>
+                        <option {% for pick in quarterPicks %}
+                                    {% if pick.team == round16.5.match.team2 %} 
+                                        selected
+                                    {% endif %}
+                                {% endfor %} >{{ round16.5.match.team2 }}
+                        </option>
+                    </select>
+                </td>
                 <td class="right"></td>
                 <td class="right"></td>
                 <td></td>
@@ -213,14 +419,54 @@
                 <td></td>
                 <td></td>
                 <td class="right"></td>
-                <td class="underline right"><select id="round2.0.2" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner</option></select></td>
+                <td class="underline right">
+                    <select id="round2.0.2" onchange="selectFunction(this);">
+                        <option selected disabled hidden>Select Winner</option>
+                        {% for pick in semiPicks %}
+                            {% if pick.team == round16.4.match.team1 or pick.team == round16.4.match.team2  or pick.team == round16.5.match.team1 or pick.team == round16.5.match.team2 %}
+                                <option
+                                    {% for finalPick in finalPicks %}
+                                        {% if finalPick.team == pick.team %}
+                                            selected
+                                        {% endif %}
+                                    {% endfor %} > {{ pick.team }}
+                                </option>
+                            {% endif %}
+                            {% if pick.team == round16.6.match.team1 or pick.team == round16.6.match.team2  or pick.team == round16.7.match.team1 or pick.team == round16.7.match.team2 %}
+                                <option
+                                    {% for finalPick in finalPicks %}
+                                        {% if finalPick.team == pick.team %}
+                                            selected
+                                        {% endif %}
+                                    {% endfor %} > {{ pick.team }}
+                                </option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td id="round16.6.1" class="underline">{{ round16.6.group1 }} {{ round16.6.seed1 }} - {{ round16.6.match.team1 }}</td>
-                <td class="underline"><select id="round8.3.1" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner<option>{{ round16.6.match.team1 }}</option><option>{{ round16.6.match.team2 }}</option></select></td>
+                <td class="underline">
+                    <select id="round8.3.1" onchange="selectFunction(this);">
+                        <option selected disabled hidden>Select Winner</option>
+                        <option {% for pick in quarterPicks %}
+                                    {% if pick.team == round16.6.match.team1 %} 
+                                        selected
+                                    {% endif %}
+                                {% endfor %} >{{ round16.6.match.team1 }}
+                        </option>
+                        <option {% for pick in quarterPicks %}
+                                    {% if pick.team == round16.6.match.team2 %} 
+                                        selected
+                                    {% endif %}
+                                {% endfor %} >{{ round16.6.match.team2 }}
+                        </option>            
+                    </select>
+                </td>
                 <td class="right"></td>
                 <td></td>
                 <td></td>
@@ -239,7 +485,32 @@
             <tr>
                 <td></td>
                 <td class="right"></td>
-                <td class="underline right"><select id="round4.1.2" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner</option></select></td>
+                <td class="underline right">
+                    <select id="round4.1.2" onchange="selectFunction(this);">
+                        <option selected disabled hidden>Select Winner</option>
+                        <option selected disabled hidden>Select Winner</option>
+                        {% for pick in quarterPicks %}
+                            {% if pick.team == round16.6.match.team1 or pick.team == round16.6.match.team2 %}
+                                <option
+                                    {% for semiPick in semiPicks %}
+                                        {% if semiPick.team == pick.team %}
+                                            selected
+                                        {% endif %}
+                                    {% endfor %} > {{ pick.team }}
+                                </option>
+                            {% endif %}
+                            {% if pick.team == round16.7.match.team1 or pick.team == round16.7.match.team2 %}
+                                <option
+                                    {% for semiPick in semiPicks %}
+                                        {% if semiPick.team == pick.team %}
+                                            selected
+                                        {% endif %}
+                                    {% endfor %} > {{ pick.team }}
+                                </option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -247,7 +518,23 @@
             </tr>
             <tr>
                 <td id="round16.7.1" class="underline">{{ round16.7.group1 }} {{ round16.7.seed1 }} - {{ round16.7.match.team1 }}</td>
-                <td class="underline right"><select id="round8.3.2" onchange="selectFunction(this);"><option selected disabled hidden>Select Winner<option>{{ round16.7.match.team1 }}</option><option>{{ round16.7.match.team2 }}</option></select></td>
+                <td class="underline right">
+                    <select id="round8.3.2" onchange="selectFunction(this);">
+                        <option selected disabled hidden>Select Winner</option>
+                        <option {% for pick in quarterPicks %}
+                                    {% if pick.team == round16.7.match.team1 %} 
+                                        selected
+                                    {% endif %}
+                                {% endfor %} >{{ round16.7.match.team1 }}
+                        </option>
+                        <option {% for pick in quarterPicks %}
+                                    {% if pick.team == round16.7.match.team2 %} 
+                                        selected
+                                    {% endif %}
+                                {% endfor %} >{{ round16.7.match.team2 }}
+                        </option>
+                    </select>
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>

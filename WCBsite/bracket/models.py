@@ -81,8 +81,8 @@ class Match(models.Model):
         (FINAL, "Final")
     )
 
-    team1 = models.ForeignKey(Team, related_name='team1', on_delete=models.CASCADE)
-    team2 = models.ForeignKey(Team, related_name='team2', on_delete=models.CASCADE)
+    team1 = models.ForeignKey(Team, related_name='team1', null=True, on_delete=models.CASCADE)
+    team2 = models.ForeignKey(Team, related_name='team2', null=True, on_delete=models.CASCADE)
     stage = models.CharField(max_length=3, choices=ROUNDS, default=GROUP_STAGE)
     date = models.DateTimeField('kickoff', default=datetime.fromtimestamp(1532044800),
                                 help_text='Match kickoff time (UTC)')
@@ -139,6 +139,9 @@ class KnockoutPick(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     knockout = models.ForeignKey(Knockout, on_delete=models.CASCADE)
     team = models.ForeignKey(Team, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return self.user.__str__()
 
 
 def get_group_matches():
