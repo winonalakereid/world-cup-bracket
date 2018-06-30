@@ -2,6 +2,7 @@ from .models import Team, Group, GroupTeam, Match, RoundOf16
 import json
 import os
 import re
+import numbers
 
 def load_json():
     pwd = os.path.dirname(__file__)
@@ -131,26 +132,46 @@ def create_knockouts(knockout):
     matches = round16['matches']
     for match in matches:
         print(f"Home {match['home_team']}, Away {match['away_team']}")
-        m = re.search('(winner|runner)_([a-h])', match['home_team'])
-        (g1_name, g1_seed) = get_group_seed(m)
-        group1 = Group.objects.get(group_name=g1_name)
-        m = re.search('(winner|runner)_([a-h])', match['away_team'])
-        (g2_name, g2_seed) = get_group_seed(m)
-        group2 = Group.objects.get(group_name=g2_name)
+        g1_seed = 1
+        g2_seed = 2
+        group1 = None
+        group2 = None
+        if isinstance(match['home_team'], numbers.Number):
+            team1 = Team.objects.get(pk=match['home_team'])
+        else:
+            m = re.search('(winner|runner)_([a-h])', match['home_team'])
+            (g1_name, g1_seed) = get_group_seed(m)
+            group1 = Group.objects.get(group_name=g1_name)
+            team1 = GroupTeam.objects.get(group__group_name=g1_name, team__group_stage_rank=g1_seed).team
+        if isinstance(match['away_team'], numbers.Number):
+            team2 = Team.objects.get(pk=match['away_team'])
+        else:
+            m = re.search('(winner|runner)_([a-h])', match['away_team'])
+            (g2_name, g2_seed) = get_group_seed(m)
+            group2 = Group.objects.get(group_name=g2_name)
+            team2 = GroupTeam.objects.get(group__group_name=g2_name, team__group_stage_rank=g2_seed).team
 
-        print(f"Searching for group team: {g1_name}, {g1_seed}")
-        group = GroupTeam.objects.filter(group__group_name=g1_name).order_by('team__group_stage_rank')
-        for gt in group:
-            print(f"{gt.group}: {gt.team}, {gt.team.group_stage_rank}")
-        gteam1 = GroupTeam.objects.get(group__group_name=g1_name, team__group_stage_rank=g1_seed)
-        gteam2 = GroupTeam.objects.get(group__group_name=g2_name, team__group_stage_rank=g2_seed)
-
-        match = Match(team1=gteam1.team, team2=gteam2.team, team1_score=match['home_result'], team1_penalty=match['home_penalty'],
+        match = Match(team1=team1, team2=team2, team1_score=match['home_result'], team1_penalty=match['home_penalty'],
                       team2_score=match['away_result'], team2_penalty=match['away_penalty'], stage=Match.ROUND_OF_16)
         match.save()
 
-        r = RoundOf16(match=match, group1=group1, seed1=g1_seed, group2=group2, seed2=g2_seed)
+        r = None
+        if team1 is not None and team2 is not None:
+            r = RoundOf16(match=match,
+                          group1=GroupTeam.objects.get(team=team1).group, seed1=team1.group_stage_rank,
+                          group2=GroupTeam.objects.get(team=team2).group, seed2=team2.group_stage_rank)
+        elif team1 is not None:
+            r = RoundOf16(match=match,
+                          group1=GroupTeam.objects.get(team=team1).group, seed1=team1.group_stage_rank,
+                          group2=group2, seed2=team2.group_stage_rank)
+        elif team2 is not None:
+            r = RoundOf16(match=match,
+                          group1=group1, seed1=g1_seed,
+                          group2=group2, seed2=team2.group_stage_rank)
+        else:
+            r = RoundOf16(match=match, group1=group1, seed1=g1_seed, group2=group2, seed2=g2_seed)
         r.save()
+
 
 def create(apps, schema_editor):
     data = load_json()
