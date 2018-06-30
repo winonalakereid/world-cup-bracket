@@ -11,6 +11,16 @@
           font-family: sans-serif;
           font-weight: 100
         }
+        .headerFont {
+            float: left;
+            color: #272425;
+            text-align: center;
+            text-decoration: none;
+            font-size: 30px;
+            vertical-align:middle;
+            font-family: sans-serif;
+            font-weight: 100
+        }
         /** dividers **/
         .blueDivider {
           background-color: #0689D6;
@@ -103,16 +113,6 @@
             border-right-color: white;
             border-bottom-color: #CC0722;
         }
-        .groupNameFont {
-            float: left;
-            color: #272425;
-            text-align: center;
-            text-decoration: none;
-            font-size: 30px;
-            vertical-align:middle;
-            font-family: sans-serif;
-            font-weight: 100
-        }
         /** highlight data row on mouse hover **/
         .hoverTable {
             border-collapse:collapse;
@@ -139,9 +139,9 @@
          	background: #CEB575;
          	color: white;
         }
+
     </style>
 </head>
-<body>
 
 <div class="topnav">
     <logo><img src="https://s3.amazonaws.com/kate-perry/worldcuplogo.jpg" style="height:30px;padding-top:2px"></logo>
@@ -152,15 +152,19 @@
 </div>
 <div class="blackDivider" height="10px"></div>
 
-<h1>Matches</h1>
-{% for group, matches in group_matches.items %}
+<div>
+    <h1 class="headerFont" style="margin-left:10%;margin-right:10%">Matches</h1>
+</div>
+
+<div width="80%" style="margin-left:10%;margin-right:10%">
+    {% for group, matches in group_matches.items %}
     <p>{{ group }}</p>
     <ul>
-    {% for match in matches %}
+        {% for match in matches %}
         <li>{{ match }}</li>
-    {% endfor %}
+        {% endfor %}
     </ul>
-{% endfor %}
-
+    {% endfor %}
+</div>
 </body>
 </html>

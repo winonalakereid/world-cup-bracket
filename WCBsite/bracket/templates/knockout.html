@@ -14,9 +14,144 @@
         }
         .underline {
             border-bottom: 1px solid black;
+            width:
         }
         .right {
             border-right: 1px solid black;
+        }
+
+        /** MAIN.CSS **/
+        /** general **/
+        body {
+          margin: 0;
+          font-family: sans-serif;
+          font-weight: 100
+        }
+        /** dividers **/
+        .blueDivider {
+          background-color: #0689D6;
+          padding-bottom: 2px;
+          align: center;
+          width: 70%;
+          margin: auto;
+          border-radius: 5px 20px 5px;
+        }
+        .goldDivider {
+          background-color: #CEB575;
+          padding-bottom: 2px;
+          align: center;
+          width: 68%;
+          margin: auto;
+          border-radius: 5px 20px 5px;
+        }
+        .redDivider {
+          background-color: #CC0722;
+          padding-bottom: 2px;
+          align: center;
+          width: 69%;
+          margin: auto;
+          border-radius: 5px 20px 5px;
+        }
+        .whiteDivider {
+          background-color: white;
+          padding-bottom: 2px;
+        }
+        .blackDivider {
+          background-color: #272425;
+          padding-bottom: 3px;
+        }
+
+
+        /** NAVIGATION.CSS **/
+        /** general top navigation **/
+        .topnav {
+          overflow: hidden;
+          background-color: #f2f2f2;
+          height: 50px;
+        }
+        .topnav logo {
+          float: left;
+          color: #272425;
+          text-align: center;
+          padding: 5px 0px 5px 10px;
+          text-decoration: none;
+          font-size: 30px;
+          vertical-align:middle;
+          font-weight:200;
+        }
+        .topnav a {
+          float: right;
+          color: #272425;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+          height: 100%;
+        }
+        /** highlight link when mouse hovers **/
+        .topnav a:hover {
+          background-color: #ddd;
+          color: black;
+          height: 100%;
+        }
+        /** highlight tab for current page **/
+        .topnav a.active {
+          background-color: #CEB575;
+          color: white;
+          height: 100%;
+        }
+
+
+        /** TABLE.CSS **/
+        /** general table div **/
+        .groupTableDiv {
+            padding-left: 10%;
+            padding-right:10%;
+            padding-bottom:25px;
+            padding-top:15
+            margin-bottom:5px
+
+            border-style: solid;
+            border-top-color: #0689D6;
+            border-left-color: white;
+            border-right-color: white;
+            border-bottom-color: #CC0722;
+        }
+        .headerFont {
+            float: left;
+            color: #272425;
+            text-align: center;
+            text-decoration: none;
+            font-size: 30px;
+            vertical-align:middle;
+            font-family: sans-serif;
+            font-weight: 100
+        }
+        /** highlight data row on mouse hover **/
+        .hoverTable {
+            border-collapse:collapse;
+        }
+        .hoverTable td {
+            padding:7px;
+        }
+        .hoverTable tr {
+         	background: white;
+        }
+        .hoverTable tr:hover {
+            background-color: #ddd;
+        }
+        /** don't highlight header row on mouse over**/
+        .notFirst th {
+            padding: 7px;
+        }
+        .notFirst tr {
+            padding: 7px;
+            background: #CEB575;
+            color: white;
+        }
+        .notFirst tr:hover {
+         	background: #CEB575;
+         	color: white;
         }
     </style>
     <script>
@@ -52,9 +187,18 @@
     </script>
 </head>
 <body>
-<h1>Knockout Matches</h1>
+<div class="topnav">
+    <logo><img src="https://s3.amazonaws.com/kate-perry/worldcuplogo.jpg" style="height:30px;padding-top:2px"></logo>
+    <logo href="groups">WORLD CUP 2018</logo>
+    <a href="groups">Groups</a>
+    <a href="matches">Matches</a>
+    <a class="active" href="knockout">Knockout</a>
+</div>
+<div class="blackDivider" height="10px"></div>
 
-    <table>
+<h1 class="headerFont" style="margin-left:10%;margin-right:10%">Knockout Matches</h1>
+
+    <table width="80%" style="margin-left:10%;margin-right:10%">
         <tbody>
             <tr>
                 <td id="round16.0.1" class="underline">{{ round16.0.group1 }} {{ round16.0.seed1 }} - {{ round16.0.match.team1 }}</td>
@@ -78,14 +222,10 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
             </tr>
             <tr>
                 <td id="round16.0.2" class="underline right">{{ round16.0.group2 }} {{ round16.0.seed2 }} - {{ round16.0.match.team2 }}</td>
                 <td class="right"></td>
-                <td></td>
-                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -120,8 +260,6 @@
                 </td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
             </tr>
             <tr>
                 <td id="round16.1.1" class="underline">{{ round16.1.group1 }} {{ round16.1.seed1 }} - {{ round16.1.match.team1 }}</td>
@@ -145,15 +283,11 @@
                 <td class="right"></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
             </tr>
             <tr>
                 <td id="round16.1.2" class="underline right">{{ round16.1.group2 }} {{ round16.1.seed2 }} - {{ round16.1.match.team2 }}</td>
                 <td></td>
                 <td class="right"></td>
-                <td></td>
-                <td></td>
                 <td></td>
                 <td></td>
             </tr>
@@ -187,8 +321,6 @@
                     </select>
                 </td>
                 <td></td>
-                <td></td>
-                <td></td>
             </tr>
             <tr>
                 <td id="round16.2.1" class="underline">{{ round16.2.group1 }} {{ round16.2.seed1 }} - {{ round16.2.match.team1 }}</td>
@@ -212,16 +344,12 @@
                 <td class="right"></td>
                 <td class="right"></td>
                 <td></td>
-                <td></td>
-                <td></td>
             </tr>
             <tr>
                 <td id="round16.2.2" class="underline right">{{ round16.2.group2 }} {{ round16.2.seed2 }} - {{ round16.2.match.team2 }}</td>
                 <td class="right"></td>
                 <td class="right"></td>
                 <td class="right"></td>
-                <td></td>
-                <td></td>
                 <td></td>
             </tr>
             <tr>
@@ -255,8 +383,6 @@
                 </td>
                 <td class="right"></td>
                 <td></td>
-                <td></td>
-                <td></td>
             </tr>
             <tr>
                 <td id="round16.3.1" class="underline">{{ round16.3.group1 }} {{ round16.3.seed1 }} - {{ round16.3.match.team1 }}</td>
@@ -280,16 +406,12 @@
                 <td></td>
                 <td class="right"></td>
                 <td></td>
-                <td></td>
-                <td></td>
             </tr>
             <tr>
                 <td id="round16.3.2" class="underline right">{{ round16.3.group2 }} {{ round16.3.seed2 }} - {{ round16.3.match.team2 }}</td>
                 <td></td>
                 <td></td>
                 <td class="right"></td>
-                <td></td>
-                <td></td>
                 <td></td>
             </tr>
             <tr>
@@ -310,8 +432,6 @@
                         {% endfor %}
                     </select>
                 </td>
-                <td></td>
-                <td></td>
             </tr>
             <tr>
                 <td id="round16.4.1" class="underline">{{ round16.4.group1 }} {{ round16.4.seed1 }} - {{ round16.4.match.team1 }}</td>
@@ -335,16 +455,12 @@
                 <td></td>
                 <td class="right"></td>
                 <td></td>
-                <td></td>
-                <td></td>
             </tr>
             <tr>
                 <td id="round16.4.2" class="underline right">{{ round16.4.group2 }} {{ round16.4.seed2 }} - {{ round16.4.match.team2 }}</td>
                 <td class="right"></td>
                 <td></td>
                 <td class="right"></td>
-                <td></td>
-                <td></td>
                 <td></td>
             </tr>
             <tr>
@@ -378,8 +494,6 @@
                 </td>
                 <td class="right"></td>
                 <td></td>
-                <td></td>
-                <td></td>
             </tr>
             <tr>
                 <td id="round16.5.1" class="underline">{{ round16.5.group1 }} {{ round16.5.seed1 }} - {{ round16.5.match.team1 }}</td>
@@ -403,16 +517,12 @@
                 <td class="right"></td>
                 <td class="right"></td>
                 <td></td>
-                <td></td>
-                <td></td>
             </tr>
             <tr>
                 <td id="round16.5.2" class="underline right">{{ round16.5.group2 }} {{ round16.5.seed2 }} - {{ round16.5.match.team2 }}</td>
                 <td></td>
                 <td class="right"></td>
                 <td class="right"></td>
-                <td></td>
-                <td></td>
                 <td></td>
             </tr>
             <tr>
@@ -445,8 +555,6 @@
                     </select>
                 </td>
                 <td></td>
-                <td></td>
-                <td></td>
             </tr>
             <tr>
                 <td id="round16.6.1" class="underline">{{ round16.6.group1 }} {{ round16.6.seed1 }} - {{ round16.6.match.team1 }}</td>
@@ -470,15 +578,11 @@
                 <td class="right"></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
             </tr>
             <tr>
                 <td id="round16.6.2" class="underline right">{{ round16.6.group2 }} {{ round16.6.seed2 }} - {{ round16.6.match.team2 }}</td>
                 <td class="right"></td>
                 <td class="right"></td>
-                <td></td>
-                <td></td>
                 <td></td>
                 <td></td>
             </tr>
@@ -513,8 +617,6 @@
                 </td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
             </tr>
             <tr>
                 <td id="round16.7.1" class="underline">{{ round16.7.group1 }} {{ round16.7.seed1 }} - {{ round16.7.match.team1 }}</td>
@@ -538,13 +640,9 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
             </tr>
             <tr>
                 <td id="round16.7.2" class="underline right">{{ round16.7.group2 }} {{ round16.7.seed2 }} - {{ round16.7.match.team2 }}</td>
-                <td></td>
-                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
