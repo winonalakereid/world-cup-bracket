@@ -1,0 +1,39 @@
+/** general top navigation **/
+.topnav {
+  overflow: hidden;
+  background-color: #f2f2f2;
+  height: 50px;
+}
+.topnav logo {
+  float: left;
+  color: #272425;
+  text-align: center;
+  padding: 5px 0px 5px 10px;
+  text-decoration: none;
+  font-size: 30px;
+  vertical-align:middle;
+  font-weight:200;
+}
+.topnav a {
+  float: right;
+  color: #272425;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  height: 100%;
+}
+
+/** highlight link when mouse hovers **/
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+  height: 100%;
+}
+
+/** highlight tab for current page **/
+.topnav a.active {
+  background-color: #CEB575;
+  color: white;
+  height: 100%;
+}

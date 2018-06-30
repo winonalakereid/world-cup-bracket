@@ -1,0 +1,39 @@
+/** general **/
+body {
+  margin: 0;
+  font-family: sans-serif;
+  font-weight: 100
+}
+/** dividers **/
+.blueDivider {
+  background-color: #0689D6;
+  padding-bottom: 2px;
+  align: center;
+  width: 70%;
+  margin: auto;
+  border-radius: 5px 20px 5px;
+}
+.goldDivider {
+  background-color: #CEB575;
+  padding-bottom: 2px;
+  align: center;
+  width: 68%;
+  margin: auto;
+  border-radius: 5px 20px 5px;
+}
+.redDivider {
+  background-color: #CC0722;
+  padding-bottom: 2px;
+  align: center;
+  width: 69%;
+  margin: auto;
+  border-radius: 5px 20px 5px;
+}
+.whiteDivider {
+  background-color: white;
+  padding-bottom: 2px;
+}
+.blackDivider {
+  background-color: #272425;
+  padding-bottom: 3px;
+}

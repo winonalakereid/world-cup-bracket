@@ -1,0 +1,57 @@
+/** general table **/
+table, th, td {
+    align: center;
+}
+
+/** general table div **/
+.groupTableDiv {
+    padding-left: 10%;
+    padding-right:10%;
+    padding-bottom:25px;
+    padding-top:15
+    margin-bottom:5px
+
+    border-style: solid;
+    border-top-color: #0689D6;
+    border-left-color: white;
+    border-right-color: white;
+    border-bottom-color: #CC0722;
+}
+.groupNameFont {
+    float: left;
+    color: #272425;
+    text-align: center;
+    text-decoration: none;
+    font-size: 30px;
+    vertical-align:middle;
+    font-family: sans-serif;
+    font-weight: 100
+}
+
+/** highlight data row on mouse hover **/
+.hoverTable {
+    border-collapse:collapse;
+}
+.hoverTable td {
+    padding:7px;
+}
+.hoverTable tr {
+ 	background: white;
+}
+.hoverTable tr:hover {
+    background-color: #ddd;
+}
+
+/** don't highlight header row on mouse over**/
+.notFirst th {
+    padding: 7px;
+}
+.notFirst tr {
+    padding: 7px;
+    background: #CEB575;
+    color: white;
+}
+.notFirst tr:hover {
+ 	background: #CEB575;
+ 	color: white;
+}
