@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>World Cup 2018 - Matches</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto+Slab" rel="stylesheet">
+
     <style>
         /** MAIN.CSS **/
         /** general **/
         body {
           margin: 0;
-          font-family: sans-serif;
+          font-family: 'Raleway', sans-serif;
           font-weight: 100
         }
         .headerFont {
@@ -18,7 +21,7 @@
             text-decoration: none;
             font-size: 30px;
             vertical-align:middle;
-            font-family: sans-serif;
+            font-family: 'Roboto Slab', serif;
             font-weight: 100
         }
         .groupHeaderFont {
@@ -28,7 +31,7 @@
             text-decoration: none;
             font-size: 25px;
             vertical-align:middle;
-            font-family: sans-serif;
+            font-family:'Roboto Slab', serif;
             font-weight: 100
         }
         /** dividers **/
@@ -94,17 +97,18 @@
         .topnav {
           overflow: hidden;
           background-color: #f2f2f2;
-          height: 50px;
+          height: 65px;
         }
         .topnav logo {
           float: left;
           color: #272425;
           text-align: center;
-          padding: 5px 0px 5px 10px;
+          padding: 5px 0px 5px 20px;
           text-decoration: none;
-          font-size: 30px;
+          font-size: 45px;
           vertical-align:middle;
           font-weight:200;
+          font-family:'Roboto Slab', serif;
         }
         .topnav a {
           float: right;
@@ -112,8 +116,9 @@
           text-align: center;
           padding: 14px 16px;
           text-decoration: none;
-          font-size: 17px;
+          font-size: 25px;
           height: 100%;
+          font-family:'Roboto Slab', serif;
         }
         /** highlight link when mouse hovers **/
         .topnav a:hover {
@@ -174,7 +179,7 @@
 </head>
 
 <div class="topnav">
-    <logo><img src="https://s3.amazonaws.com/kate-perry/worldcuplogo.jpg" style="height:30px;padding-top:2px"></logo>
+    <logo><img src="https://s3.amazonaws.com/kate-perry/worldcuplogo.jpg" style="height:50px;padding-top:2px"></logo>
     <logo href="groups">WORLD CUP 2018</logo>
     <a href="groups">Groups</a>
     <a class="active" href="matches">Matches</a>
@@ -189,7 +194,6 @@
     <div class="whiteDivider" height="2px"></div>
     <div class="redHeaderDivider" height="2px"></div>
     <div class="whiteDivider" height="2px"></div>
-    <div class="goldHeaderDivider" height="2px"></div>
 </div>
 
 {% for group, matches in group_matches.items %}
