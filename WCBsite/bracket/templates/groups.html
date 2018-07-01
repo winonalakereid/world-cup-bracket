@@ -17,6 +17,16 @@
           font-family: sans-serif;
           font-weight: 100
         }
+        .headerFont {
+            float: left;
+            color: #272425;
+            text-align: center;
+            text-decoration: none;
+            font-size: 30px;
+            vertical-align:middle;
+            font-family: sans-serif;
+            font-weight: 100
+        }
         /** dividers **/
         .blueDivider {
           background-color: #0689D6;
@@ -111,16 +121,6 @@
             border-right-color: white;
             border-bottom-color: #CC0722;
         }
-        .groupNameFont {
-            float: left;
-            color: #272425;
-            text-align: center;
-            text-decoration: none;
-            font-size: 30px;
-            vertical-align:middle;
-            font-family: sans-serif;
-            font-weight: 100
-        }
         /** highlight data row on mouse hover **/
         .hoverTable {
             border-collapse:collapse;
@@ -169,7 +169,7 @@
 
     {% for group, teams in group_map.items %}
     <div class="groupTableDiv">
-        <h2 class="groupNameFont">{{ group }}</h2>
+        <h2 class="headerFont">{{ group }}</h2>
         <table class="hoverTable" width="100%">
             <thead class="notFirst">
 

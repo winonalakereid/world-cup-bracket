@@ -21,6 +21,16 @@
             font-family: sans-serif;
             font-weight: 100
         }
+        .groupHeaderFont {
+            float: left;
+            color: #272425;
+            text-align: center;
+            text-decoration: none;
+            font-size: 25px;
+            vertical-align:middle;
+            font-family: sans-serif;
+            font-weight: 100
+        }
         /** dividers **/
         .blueDivider {
           background-color: #0689D6;
@@ -121,7 +131,7 @@
             padding:7px;
         }
         .hoverTable tr {
-         	background: white;
+         	background: #f2f2f2;
         }
         .hoverTable tr:hover {
             background-color: #ddd;
@@ -140,6 +150,9 @@
          	color: white;
         }
 
+
+
+
     </style>
 </head>
 
@@ -152,19 +165,59 @@
 </div>
 <div class="blackDivider" height="10px"></div>
 
-<div>
-    <h1 class="headerFont" style="margin-left:10%;margin-right:10%">Matches</h1>
-</div>
+<h1 class="headerFont" style="margin-left:10%;margin-right:10%;margin-bottom:0px">Matches</h1>
 
+<div style="padding-top:50px"/>
+{% for group, matches in group_matches.items %}
 <div width="80%" style="margin-left:10%;margin-right:10%">
-    {% for group, matches in group_matches.items %}
-    <p>{{ group }}</p>
-    <ul>
-        {% for match in matches %}
-        <li>{{ match }}</li>
-        {% endfor %}
-    </ul>
+    <h1 class="groupHeaderFont" align="center" width="100%">{{ group }}</h1>
+    {% for match in matches %}
+
+    {% for i in xx %}
+    <h1 class="groupHeaderFont" align="center" width="100%">hello, hello</h1>
+    {% endfor %}
+
+    <table class="hoverTable" width="100%">
+        <thead>
+        <tr>
+            <td colspan="3" align="center" style="border-radius:5px 5px 0px 0px;background-color:#CEB575;color:white">{{ match.date }}
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td align="center" width="50%" style="border-right:1px solid #272425">{{ match.team1 }}</td>
+            <td align="center" width="50%">{{ match.team1_score }}</td>
+            {% if match.team1_score > match.team2_score %}
+            <td align="center" width="50%"></td>
+            {% else %}
+            <td><img src="https://s3.amazonaws.com/kate-perry/star.png" style="height:15px"></td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td align="center" width="50%" style="border-right:1px solid #272425">{{ match.team2 }}</td>
+            <td align="center" width="50%">{{ match.team2_score }}</td>
+            {% if match.team2_score > match.team1_score %}
+            <td align="center" width="50%"></td>
+            {% else %}
+            <td><img src="https://s3.amazonaws.com/kate-perry/star.png" style="height:15px"></td>
+            {% endif %}
+        </tr>
+        </tbody>
+    </table>
+    <div class="whiteDivider" height="2px"></div>
+    <div class="whiteDivider" height="2px"></div>
     {% endfor %}
 </div>
+<div>
+    <div class="blueDivider" height="2px"></div>
+    <div class="whiteDivider" height="2px"></div>
+    <div class="redDivider" height="2px"></div>
+    <div class="whiteDivider" height="2px"></div>
+    <div class="goldDivider" height="2px"></div>
+</div>
+</div>
+{% endfor %}
+
 </body>
 </html>
