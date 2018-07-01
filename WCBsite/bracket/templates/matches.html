@@ -22,7 +22,7 @@
             font-weight: 100
         }
         .groupHeaderFont {
-            float: left;
+            float: center;
             color: #272425;
             text-align: center;
             text-decoration: none;
@@ -36,7 +36,7 @@
           background-color: #0689D6;
           padding-bottom: 2px;
           align: center;
-          width: 70%;
+          width: 50%;
           margin: auto;
           border-radius: 5px 20px 5px;
         }
@@ -44,7 +44,7 @@
           background-color: #CEB575;
           padding-bottom: 2px;
           align: center;
-          width: 68%;
+          width: 48%;
           margin: auto;
           border-radius: 5px 20px 5px;
         }
@@ -52,7 +52,7 @@
           background-color: #CC0722;
           padding-bottom: 2px;
           align: center;
-          width: 69%;
+          width: 49%;
           margin: auto;
           border-radius: 5px 20px 5px;
         }
@@ -63,6 +63,30 @@
         .blackDivider {
           background-color: #272425;
           padding-bottom: 3px;
+        }
+        .blueHeaderDivider {
+          background-color: #0689D6;
+          padding-bottom: 2px;
+          align: center;
+          width: 80%;
+          margin: auto;
+          border-radius: 5px 20px 5px;
+        }
+        .goldHeaderDivider {
+          background-color: #CEB575;
+          padding-bottom: 2px;
+          align: center;
+          width: 78%;
+          margin: auto;
+          border-radius: 5px 20px 5px;
+        }
+        .redHeaderDivider {
+          background-color: #CC0722;
+          padding-bottom: 2px;
+          align: center;
+          width: 79%;
+          margin: auto;
+          border-radius: 5px 20px 5px;
         }
 
         /** NAVIGATION.CSS **/
@@ -107,15 +131,11 @@
         /** TABLE.CSS **/
         /** general table **/
         table, th, td {
-            align: center;
+            align:center;
         }
         /** general table div **/
         .groupTableDiv {
-            padding-left: 10%;
-            padding-right:10%;
-            padding-bottom:25px;
-            padding-top:15
-            margin-bottom:5px
+            margin-bottom:15px
 
             border-style: solid;
             border-top-color: #0689D6;
@@ -132,9 +152,10 @@
         }
         .hoverTable tr {
          	background: #f2f2f2;
+         	border-bottom: 1px solid #ddd
         }
         .hoverTable tr:hover {
-            background-color: #ddd;
+            background-color: #f2f2f2;
         }
         /** don't highlight header row on mouse over**/
         .notFirst th {
@@ -149,10 +170,6 @@
          	background: #CEB575;
          	color: white;
         }
-
-
-
-
     </style>
 </head>
 
@@ -167,46 +184,49 @@
 
 <h1 class="headerFont" style="margin-left:10%;margin-right:10%;margin-bottom:0px">Matches</h1>
 
-<div style="padding-top:50px"/>
+<div style="padding-top:70px;padding-bottom:10px">
+    <div class="blueHeaderDivider" height="2px"></div>
+    <div class="whiteDivider" height="2px"></div>
+    <div class="redHeaderDivider" height="2px"></div>
+    <div class="whiteDivider" height="2px"></div>
+    <div class="goldHeaderDivider" height="2px"></div>
+</div>
+
 {% for group, matches in group_matches.items %}
-<div width="80%" style="margin-left:10%;margin-right:10%">
+<div class="groupTableDiv" width="50%" style="margin-left:25%;margin-right:25%">
     <h1 class="groupHeaderFont" align="center" width="100%">{{ group }}</h1>
     {% for match in matches %}
-
-    {% for i in xx %}
-    <h1 class="groupHeaderFont" align="center" width="100%">hello, hello</h1>
-    {% endfor %}
-
-    <table class="hoverTable" width="100%">
+    <table class="hoverTable" width="100%" style="display:inline-table;margin-bottom:15px">
         <thead>
         <tr>
-            <td colspan="3" align="center" style="border-radius:5px 5px 0px 0px;background-color:#CEB575;color:white">{{ match.date }}
-            </td>
+            <td colspan="3" align="center" style="border-radius:5px 5px 0px 0px;background-color:#CEB575;color:white">{{ match.date }}</td>
         </tr>
         </thead>
         <tbody>
         <tr>
+            {% if match.team1_score < match.team2_score %}
+                <td align="center"></td>
+            {% elif match.team2_score == match.team1_score %}
+                <td style="padding-left:15px"> ― </td>
+            {% else %}
+                <td style="padding-left:15px"><img src="https://s3.amazonaws.com/kate-perry/star.png" style="height:15px"></td>
+            {% endif %}
             <td align="center" width="50%" style="border-right:1px solid #272425">{{ match.team1 }}</td>
             <td align="center" width="50%">{{ match.team1_score }}</td>
-            {% if match.team1_score > match.team2_score %}
-            <td align="center" width="50%"></td>
-            {% else %}
-            <td><img src="https://s3.amazonaws.com/kate-perry/star.png" style="height:15px"></td>
-            {% endif %}
         </tr>
         <tr>
+            {% if match.team2_score < match.team1_score %}
+                <td align="center"></td>
+            {% elif match.team2_score == match.team1_score %}
+                <td style="padding-left:15px"> ― </td>
+            {% else %}
+                <td style="padding-left:15px"><img src="https://s3.amazonaws.com/kate-perry/star.png" style="height:15px"></td>
+            {% endif %}
             <td align="center" width="50%" style="border-right:1px solid #272425">{{ match.team2 }}</td>
             <td align="center" width="50%">{{ match.team2_score }}</td>
-            {% if match.team2_score > match.team1_score %}
-            <td align="center" width="50%"></td>
-            {% else %}
-            <td><img src="https://s3.amazonaws.com/kate-perry/star.png" style="height:15px"></td>
-            {% endif %}
         </tr>
         </tbody>
     </table>
-    <div class="whiteDivider" height="2px"></div>
-    <div class="whiteDivider" height="2px"></div>
     {% endfor %}
 </div>
 <div>
@@ -215,7 +235,6 @@
     <div class="redDivider" height="2px"></div>
     <div class="whiteDivider" height="2px"></div>
     <div class="goldDivider" height="2px"></div>
-</div>
 </div>
 {% endfor %}
 
